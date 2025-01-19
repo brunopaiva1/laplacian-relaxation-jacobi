@@ -1,6 +1,8 @@
 #include "laplacian.h"
 #include <iostream>
 #include <cmath>
+#include <chrono>
+#include <iomanip>
 
 JacobiRelaxation::JacobiRelaxation(int rows, int cols, double tol, int max_interation)
     : rows(rows), cols(cols), tol(tol), max_interation(max_interation) {
@@ -35,6 +37,8 @@ void JacobiRelaxation::initialize() {
     std::cout << "Jacobi relaxation Calculation: "
               << rows << " x " << cols << "mesh" << std::endl;
 
+    auto start_time = std::chrono::high_resolution_clock::now();
+
     while (error > tol && cont < max_interation) {
         error = 0.0;
 
@@ -49,6 +53,16 @@ void JacobiRelaxation::initialize() {
         double** temp = A;
         A = A_new;
         A_new = temp;
+
+        if(cont % 100 == 0) {
+            auto elapsed = std::chrono::duration<double>(
+                std::chrono::high_resolution_clock::now() - start_time).count();
+            std::cout << "Interações " << std::setw(5) << cont
+                      << ", ERROR: " << std::setprecision(6) << error
+                      << " (Elapsed: " << elapsed << " s)" << std::endl;
+        }
+
+        ++cont
 
     }
 }
