@@ -7,3 +7,8 @@ JacobiRelaxantion::JacobiRelaxantion(int rows, int cols, double tol, int max_int
         A = allocate_matrix(rows, cols);
         A_new = allocate_matrix(rows, cols);
     }
+
+JacobiRelaxantion::~JacobiRelaxantion(){
+    deallocate_matrix(A, rows);
+    deallocate_matrix(A_new, rows);
+}
