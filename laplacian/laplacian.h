@@ -10,6 +10,9 @@ private:
     int max_interation;
     double** A;
     double** A_new;
+
+    double** allocate_matrix(int rows, int cols);
+    void deallocate_matrix(double** matrix, int rows);
 };
 
 #endif // JACOBIRELAXATION_H
