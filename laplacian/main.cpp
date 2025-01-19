@@ -11,7 +11,7 @@ int main() {
 
     jacobi.initialize();
     jacobi.solve();
-    jacobi.print_results();
+    // jacobi.print_results();
 
     return 0;
 }

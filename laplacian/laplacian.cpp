@@ -64,7 +64,7 @@ void JacobiRelaxation::solve(){
             auto elapsed = std::chrono::duration<double>(
                 std::chrono::high_resolution_clock::now() - start_time).count();
             std::cout << "Interações " << std::setw(5) << cont
-                      << ", ERROR: " << std::setprecision(6) << error
+                      << ", error: " << std::setprecision(6) << error
                       << " (Elapsed: " << elapsed << " s)" << std::endl;
         }
 
