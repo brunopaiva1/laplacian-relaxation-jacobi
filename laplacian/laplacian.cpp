@@ -62,7 +62,20 @@ void JacobiRelaxation::initialize() {
                       << " (Elapsed: " << elapsed << " s)" << std::endl;
         }
 
-        ++cont
+        ++cont;
 
+    }
+
+    auto runtime = std::chrono::duration<double>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
+    std::cout << "Total runtime: " << runtime << " s " << std::endl;
+}
+
+void JacobiRelaxation::print_results() const {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cout << std::setw(8) << std::setprecision(4) << A[i][j] << " ";
+        }
+        std::cout << "\n";
     }
 }
