@@ -3,7 +3,7 @@
 
 #include <string>
 
-class JacobiRelaxantion {
+class JacobiRelaxation {
 private:
     int rows, cols; // linhas e colunas para dimensão da malha
     double tol;
@@ -15,8 +15,8 @@ private:
     void deallocate_matrix(double** matrix, int rows);
 
 public:
-    JacobiRelaxantion(int rowns, int cols, double tol, int max_interation);
-    ~JacobiRelaxantion();
+    JacobiRelaxation(int rowns, int cols, double tol, int max_interation);
+    ~JacobiRelaxation();
 
     void initialize();
     void solve();
