@@ -13,6 +13,10 @@ private:
 
     double** allocate_matrix(int rows, int cols);
     void deallocate_matrix(double** matrix, int rows);
+
+public:
+    JacobiRelaxantion(int rowns, int cols, double tol, int max_interation);
+    ~JacobiRelaxantion();
 };
 
 #endif // JACOBIRELAXATION_H
