@@ -17,6 +17,10 @@ private:
 public:
     JacobiRelaxantion(int rowns, int cols, double tol, int max_interation);
     ~JacobiRelaxantion();
+
+    void initialize();
+    void solve();
+    void print_results() const;
 };
 
 #endif // JACOBIRELAXATION_H
