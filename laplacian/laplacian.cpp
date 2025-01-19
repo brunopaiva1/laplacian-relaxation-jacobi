@@ -31,6 +31,12 @@ void JacobiRelaxation::deallocate_matrix(double** matrix, int rows) {
 }
 
 void JacobiRelaxation::initialize() {
+    for (int i = 0; i < rows; ++i) {
+        A[i][0] = 1.0;
+        A_new[i][0] = 1.0;
+    }
+}
+void JacobiRelaxation::solve(){
     double error = 1.0;
     int cont = 0;
 
