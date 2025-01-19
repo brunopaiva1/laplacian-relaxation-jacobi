@@ -27,3 +27,28 @@ void JacobiRelaxation::deallocate_matrix(double** matrix, int rows) {
     }
     delete[] matrix;
 }
+
+void JacobiRelaxation::initialize() {
+    double error = 1.0;
+    int cont = 0;
+
+    std::cout << "Jacobi relaxation Calculation: "
+              << rows << " x " << cols << "mesh" << std::endl;
+
+    while (error > tol && cont < max_interation) {
+        error = 0.0;
+
+        for(int j = 1; j < rows - 1; ++j){
+            for (int i = 1; i < cols -1; ++i){
+                A_new[j][i] = 0.25 * (A[j][i + 1] + A[j][i - 1] +
+                                      A[j - 1][i] + A[j + 1][i]);
+                error = std::max(error, std::fabs(A_new[j][i] - A[j][i]));
+            }
+        }
+
+        double** temp = A;
+        A = A_new;
+        A_new = temp;
+
+    }
+}
