@@ -8,8 +8,7 @@ import numpy as np
 
 from numba import jit # type: ignore
 
-
-@jit
+@jit (parallel = True)
 def jacobi_relax_core(A, Anew):
     error = 0.0
     n = A.shape[0]
