@@ -13,4 +13,29 @@ void LinearRegression::fit(double** Y, double** X, double** w, int N, int D, int
         gradient[i] = new double[p];
         std::memset(gradient[i], 0, p * sizeof(double));
     }
+    for (int it = 0; it < interations; ++it) {
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < D; ++j) {
+                for (int k = 0; k < p; ++k) {
+                    double prediction = 0.0;
+                    for (int d = 0; d < D; ++d) {
+                        prediction += X[i][d] * w[d][k];
+                    }
+                    gradient[j][k] += X[i][j] * (prediction - Y[i][k]);
+                }
+            }
+        }
+        for (int j = 0; j < D; ++j) {
+            for (int k = 0; k < p; ++k) {
+                w[j][k] -= alphaN * gradient[j][k];
+            }
+        }
+        for (int i = 0; i < D; ++i) {
+            std::memset(gradient[i], 0, p * sizeof(double));
+        }
+    }
+    for (int i = 0; i < D; ++i) {
+        delete[] gradient[i];
+    }
+    delete[] gradient;
 }
