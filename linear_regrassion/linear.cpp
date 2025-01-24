@@ -1,6 +1,7 @@
 #include "linear.h"
 #include <iostream>
 #include <cstring>
+#include <omp.h>
 
 LinearRegression::LinearRegression(int interations, double alphaN)
         : interations(interations), alphaN(alphaN) {}
