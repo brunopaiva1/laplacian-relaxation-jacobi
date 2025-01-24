@@ -10,6 +10,7 @@ LinearRegression::~LinearRegression() {}
 
 void LinearRegression::fit(double** Y, double** X, double** w, int N, int D, int p){
     double** gradient = new double*[D];
+#pragma omp for
     for (int i = 0; i < D; ++i) {
         gradient[i] = new double[p];
         std::memset(gradient[i], 0, p * sizeof(double));
