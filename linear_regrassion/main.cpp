@@ -1,3 +1,8 @@
+/**
+Compilar regressão linear: g++ -o linear_regression main.cpp linear.cpp
+executar: ./linear_regression --samples 100000 --features 5 --functions 3 --iterations 15
+**/
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
