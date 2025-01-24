@@ -38,12 +38,14 @@ int main(int argc, char* argv[]) {
     int features = 10;
     int functions = 4;
     int interations = 20;
+    int thread_count = 4; // Número de threads (por exemplo, 4)
 
     for (int i = 1; i < argc; ++i) {
         if (std::string(argv[i]) == "--samples" && i + 1 < argc) samples = std::stoi(argv[++i]);
         else if (std::string(argv[i]) == "--features" && i + 1 < argc) features = std::stoi(argv[++i]);
         else if (std::string(argv[i]) == "--functions" && i + 1 < argc) functions = std::stoi(argv[++i]);
         else if (std::string(argv[i]) == "--interations" && i + 1 < argc) interations = std::stoi(argv[++i]);
+        else if (std::string(argv[i]) == "--threads" && i + 1 < argc) thread_count = std::stoi(argv[++i]); // Aceitar valor de threads via argumento
     }
 
     double alphaN = 0.01 / samples;
@@ -56,13 +58,13 @@ int main(int argc, char* argv[]) {
     generateRandomMatrix(points, samples, features);
     generateRandomMatrix(labels, samples, functions);
     for (int i = 0; i < features; ++i) {
-        std::memset(w[i], 0, functions * sizeof(double)); // Inicializa com zeros
+        std::memset(w[i], 0, functions * sizeof(double));
     }
 
     LinearRegression lr(interations, alphaN);
 
     auto start = std::chrono::high_resolution_clock::now();
-    lr.fit(labels, points, w, samples, features, functions);
+    lr.fit(labels, points, w, samples, features, functions, thread_count);
     auto end = std::chrono::high_resolution_clock::now();
 
     double selftimed = std::chrono::duration<double>(end - start).count();
