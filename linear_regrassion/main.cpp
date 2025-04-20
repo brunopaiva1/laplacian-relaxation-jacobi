@@ -8,6 +8,7 @@ executar: ./linear_regression --samples 100000 --features 5 --functions 3 --iter
 #include <ctime>
 #include <chrono>
 #include <cstring>
+#include <iomanip> 
 #include "linear.h"
 
 double** allocateMatrix(int rows, int cols) {
@@ -76,8 +77,7 @@ int main(int argc, char* argv[]) {
             checksum += w[i][j];
         }
     }
-    std::cout << "Checksum: " << checksum << "\n";
-
+    std::cout << "Checksum: " << std::fixed << std::setprecision(16) << checksum << "\n";
     freeMatrix(w, features);
     freeMatrix(points, samples);
     freeMatrix(labels, samples);
